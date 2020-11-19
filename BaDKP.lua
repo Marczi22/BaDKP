@@ -3,18 +3,18 @@ local CreateFrame = CreateFrame
 BaDKP = CreateFrame("Frame")
 local BaDKP = BaDKP
 
-function BaDKP:SetStateOn()
-	runmask = true
-end
+--function BaDKP:SetStateOn()
+	--runmask = true
+--end
 
-function BaDKP:SetStateOff()
-	runmask = false
-end
+--function BaDKP:SetStateOff()
+	--runmask = false
+--end
 
 BaDKP:SetScript("OnEvent", function(self, event, ...)
-	if (runmask) and (event == "CHAT_MSG_RAID") or (event == "CHAT_MSG_RAID_LEADER") or (event == "CHAT_MSG_RAID_WARNING") then -- na ez kurva elegáns tényleg
-		szoveg = arg[1]
-		print(szoveg+" tesztmasolat")
+	if (runmask == true) and (event == "CHAT_MSG_RAID") or (event == "CHAT_MSG_RAID_LEADER") or (event == "CHAT_MSG_RAID_WARNING") then -- nem ártana a szintaxist ismerni lol
+		local msg,sender = arg[1],pruneCrossRealm(arg[2])
+		print(msg)
 	end
 end)
 
@@ -24,10 +24,12 @@ SlashCmdList["BADKP"] = function(msg)
 	msg = msg or ""
 	msg = string.lower(msg or "")
 	if( msg == "on") then
-		BaDKP:SetStateOn()
+		--BaDKP:SetStateOn()
+		runmask = true
 		print("bekapcsolva")
 	elseif( msg == "off") then
-		BaDKP:SetStateOff()
+		--BaDKP:SetStateOff()
+		runmask = false
 		print("kikapcsolva")
 	elseif( msg == "kiameleg") then 
 		print("blue a meleg")
