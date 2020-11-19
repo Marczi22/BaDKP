@@ -29,6 +29,8 @@ SlashCmdList["BADKP"] = function(msg)
 	elseif( msg == "off") then
 		BaDKP:SetStateOff()
 		print("kikapcsolva")
+	elseif( msg == "kiameleg")
+		print("blue a meleg")
 	else
 	print("2 betu es elgepelted bazmeg")
 	end
