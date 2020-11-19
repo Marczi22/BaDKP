@@ -1,5 +1,7 @@
-local runmask
-BaDKP = select(2, ...)
+local runmask = false
+local CreateFrame = CreateFrame
+BaDKP = CreateFrame("Frame")
+local BaDKP = BaDKP
 
 function BaDKP:SetStateOn()
 	runmask = true
