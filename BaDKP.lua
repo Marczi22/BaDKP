@@ -11,10 +11,10 @@ local BaDKP = BaDKP
 	--runmask = false
 --end
 
-BaDKP:SetScript("OnEvent", function(self, event, ...)
+BaDKP:SetScript("OnEvent", function(self, event, ...) -- szerintem nem működik az event caller
 	if (runmask == true) and (event == "CHAT_MSG_RAID") or (event == "CHAT_MSG_RAID_LEADER") or (event == "CHAT_MSG_RAID_WARNING") then -- nem ártana a szintaxist ismerni lol
 		local msg,sender = arg[1],pruneCrossRealm(arg[2])
-		print(msg)
+		print(msg) -- 
 	end
 end)
 
