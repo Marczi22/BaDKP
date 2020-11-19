@@ -1,22 +1,20 @@
 local runmask
 BaDKP = select(2, ...)
 
-local function BaDKP:SetStateOn()
-	set runmask = true
+function BaDKP:SetStateOn()
+	runmask = true
 end
 
-local function BaDKP:SetStateOff()
-	set runmask = false
+function BaDKP:SetStateOff()
+	runmask = false
 end
 
 BaDKP:SetScript("OnEvent", function(self, event, ...)
 	if (runmask) and (event == "CHAT_MSG_RAID") or (event == "CHAT_MSG_RAID_LEADER") or (event == "CHAT_MSG_RAID_WARNING") then -- na ez kurva elegáns tényleg
-	szoveg = arg[1]
-	print(szoveg+" tesztmasolat")
+		szoveg = arg[1]
+		print(szoveg+" tesztmasolat")
 	end
-end
-
-
+end)
 
 SLASH_BADKP1 = "/badkp"
 SLASH_BADKP2 = "/baddkp"
@@ -29,11 +27,13 @@ SlashCmdList["BADKP"] = function(msg)
 	elseif( msg == "off") then
 		BaDKP:SetStateOff()
 		print("kikapcsolva")
-	elseif( msg == "kiameleg")
+	elseif( msg == "kiameleg") then 
 		print("blue a meleg")
 	else
 	print("2 betu es elgepelted bazmeg")
 	end
+end
+
 	
 
 		
