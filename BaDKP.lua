@@ -1,4 +1,4 @@
-local runmask = false
+local runmask
 local CreateFrame = CreateFrame
 BaDKP = CreateFrame("Frame")
 local BaDKP = BaDKP
