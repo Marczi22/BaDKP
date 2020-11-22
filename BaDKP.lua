@@ -29,10 +29,16 @@ end
 
 function BaDKPFrame_OnEvent(event, ...)
 	local arg1, arg2, arg3, arg11, arg12 = ...;
-	local szam = tonumber(arg1)
-	local szorzat
+	local szam = arg1 -- arg1 az üzenet tartalma az apiból
+	local szorzat, sub1, sub2
+	sub1 = string.sub(arg1, 1, string.len(arg1)-1) -- az üzenet, kivéve utolsó betűje
+	sub2 = string.sub(arg1, string.len(arg1)) --az utolsó betű
 	
-	if (runmask == 1) and (szam ~= 0) then
+	if (tonumber(sub1) ~= nil) and (runmask == 1) and (tonumber(szam) == nil) and (sub2 == "k") then --ha az üzenet szám, és az utolsó betűje k, akkor rövidített a küldő, tehát értelmezzük
+		szorzat = sub1*3
+		szam = 1000*sub1/3 
+		SendChatMessage("a licit haromszorosa: " .. szorzat .. "k, a harmada: " .. szam  , "RAID") -- ua. mint lent, csak van benne 2 "k"
+	elseif (runmask == 1) and (tonumber(szam) ~= nil) and (sub2 ~= "k") then -- ha szám és nem írt a végére k-t
 	szorzat = szam*3
 	szam = szam/3
 	SendChatMessage("a licit haromszorosa: " .. szorzat .. ", a harmada: " .. szam , "RAID")
