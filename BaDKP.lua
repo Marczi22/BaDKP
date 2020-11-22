@@ -1,22 +1,11 @@
-local runmask
-local CreateFrame = CreateFrame
-BaDKP = CreateFrame("Frame")
-local BaDKP = BaDKP
+function BaDKPFrame_OnLoad()
+	BaDKPFrame:RegisterEvent("CHAT_MSG_RAID");
+	BaDKPFrame:RegisterEvent("CHAT_MSG_RAID_LEADER");
+	BaDKPFrame:RegisterEvent("CHAT_MSG_RAID_WARNING");
+	BaDKPFrame:Hide();
+	local runmask
+end
 
---function BaDKP:SetStateOn()
-	--runmask = true
---end
-
---function BaDKP:SetStateOff()
-	--runmask = false
---end
-
-BaDKP:SetScript("OnEvent", function(self, event, ...) -- szerintem nem működik az event caller
-	if (runmask == true) and (event == "CHAT_MSG_RAID") or (event == "CHAT_MSG_RAID_LEADER") or (event == "CHAT_MSG_RAID_WARNING") then -- nem ártana a szintaxist ismerni lol
-		local msg,sender = arg[1],pruneCrossRealm(arg[2])
-		print(msg) -- 
-	end
-end)
 
 SLASH_BADKP1 = "/badkp"
 SLASH_BADKP2 = "/baddkp"
@@ -25,11 +14,11 @@ SlashCmdList["BADKP"] = function(msg)
 	msg = string.lower(msg or "")
 	if( msg == "on") then
 		--BaDKP:SetStateOn()
-		runmask = true
+		runmask = 1
 		print("bekapcsolva")
 	elseif( msg == "off") then
 		--BaDKP:SetStateOff()
-		runmask = false
+		runmask = 0
 		print("kikapcsolva")
 	elseif( msg == "kiameleg") then 
 		print("blue a meleg")
@@ -38,7 +27,18 @@ SlashCmdList["BADKP"] = function(msg)
 	end
 end
 
+function BaDKPFrame_OnEvent(event, ...)
+	local arg1, arg2, arg3, arg11, arg12 = ...;
+	local szam = tonumber(arg1)
+	local szorzat
 	
+	if (runmask == 1) and (szam ~= 0) then
+	szorzat = szam*3
+	szam = szam/3
+	SendChatMessage("a licit haromszorosa: " .. szorzat .. ", a harmada: " .. szam , "RAID")
+	end
+	
+end
 
 		
 		

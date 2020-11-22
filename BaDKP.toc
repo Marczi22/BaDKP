@@ -4,6 +4,7 @@
 ## Author: marczilia
 
 BaDKP.lua
+BaDKP.xml
 LibStub\LibStub.lua
 CallbackHandler-1.0\CallbackHandler-1.0.xml
 AceDB-3.0\AceDB-3.0.xml
